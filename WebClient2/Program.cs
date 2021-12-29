@@ -1,4 +1,10 @@
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog((context, config) =>
+{
+    config.ReadFrom.Configuration(context.Configuration);
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

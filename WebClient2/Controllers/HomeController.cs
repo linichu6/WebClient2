@@ -13,10 +13,12 @@ namespace WebClient2.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Login()
         { 
+
              return View();
         }
 
@@ -35,6 +37,7 @@ namespace WebClient2.Controllers
         {
             if (ModelState.IsValid)
             {
+                _logger.LogInformation("User login: " + user.Username);
                 // validate user
                 ViewBag.ShowErr = false;
                 try
@@ -46,6 +49,7 @@ namespace WebClient2.Controllers
                     }
                     else
                     {
+                        _logger.LogInformation(user.Username + " log in failed");
                         ViewBag.ShowErr = true;
                         ViewBag.ErrorMessage = "Login Failed! Incorrect Username or Password. Please contact Admin";
                         return View();
